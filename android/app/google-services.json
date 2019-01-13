@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "319477551532",
+    "firebase_url": "https://kwizny-22558.firebaseio.com",
+    "project_id": "kwizny-22558",
+    "storage_bucket": "kwizny-22558.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319477551532:android:41d57a2087c64f26",
+        "android_client_info": {
+          "package_name": "com.example.kwizny"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319477551532-7gbasr1v7m3ots292ejpcul8pbtl8i3j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kwizny",
+            "certificate_hash": "45687c93a1564b78d2c3029b4af89c1757fad769"
+          }
+        },
+        {
+          "client_id": "319477551532-iiik8b992lj9r9ocvd1hiq4vd7oa93sm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPF34rDtMLGV5N1Ya6AQ5KNpEGJaaI2To"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319477551532-iiik8b992lj9r9ocvd1hiq4vd7oa93sm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
