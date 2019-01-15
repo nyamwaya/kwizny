@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:kwizny/src/blocs/login_bloc.dart';
 import 'package:kwizny/src/blocs/bloc_base.dart';
 import 'package:kwizny/src/ui/root_screen.dart';
+import 'package:kwizny/src/ui/sign_up_screen.dart';
+import 'package:kwizny/src/blocs/bloc_base.dart';
+import 'package:kwizny/src/blocs/signup_bloc.dart';
 
-class SignInForm extends StatelessWidget {
+class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final LoginBloc bloc = BlocProvider.of<LoginBloc>(context);
@@ -16,7 +19,8 @@ class SignInForm extends StatelessWidget {
         Container(margin: EdgeInsets.only(top: 5.0, bottom: 5.0)),
         passwordField(bloc),
         Container(margin: EdgeInsets.only(top: 5.0, bottom: 5.0)),
-        submitButton(bloc, context)
+        submitButton(bloc, context),
+        signUpButton(context)
       ],
     );
   }
@@ -66,7 +70,7 @@ class SignInForm extends StatelessWidget {
 
   Widget button(LoginBloc bloc, BuildContext context) {
     return RaisedButton(
-        child: Text(StringConstant.submit),
+        child: Text(StringConstant.login),
         textColor: Colors.white,
         color: Colors.black,
         shape: RoundedRectangleBorder(
@@ -80,25 +84,60 @@ class SignInForm extends StatelessWidget {
         });
   }
 
+  Widget signUpButton(BuildContext context) {
+    return Card(
+      child: RaisedButton(
+        child: Text(StringConstant.signUp),
+        textColor: Colors.white,
+        elevation: 8.0,
+        shape: BeveledRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(7.0))),
+        onPressed: () {
+          //launch the signup screen using the bloc provider
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BlocProvider(
+                      bloc: SignUpBloc(),
+                      child: SignUp(),
+                    )),
+          );
+        },
+      ),
+    );
+  }
+
   void authenticateUser(LoginBloc bloc, BuildContext context) {
     bloc.showProgressBar(true);
     bloc.submit().then((value) {
-      if (value == 0) {
-        //New User
-        bloc.registerUser().then((value) {
-          Navigator.pushReplacement(
-              //page to open when happy path
-              context,
-              MaterialPageRoute(
-                  builder: (context) => RootScreen(bloc.emailAddress)));
-        });
-      } else {
-        //Already registered
+      if (value.isNotEmpty) {
+        print("Signed in: $value");
         Navigator.pushReplacement(
+            //page to open when happy path
             context,
             MaterialPageRoute(
                 builder: (context) => RootScreen(bloc.emailAddress)));
+      } else {
+        //there was a problem loging in user.
+        //do something.
+        print("Huston we have a problem");
       }
+      // if (value == 0) {
+      //   //New User
+      //   bloc.registerUser().then((value) {
+      //     Navigator.pushReplacement(
+      //         //page to open when happy path
+      //         context,
+      //         MaterialPageRoute(
+      //             builder: (context) => RootScreen(bloc.emailAddress)));
+      //   });
+      // } else {
+      //   //Already registered
+      //   Navigator.pushReplacement(
+      //       context,
+      //       MaterialPageRoute(
+      //           builder: (context) => RootScreen(bloc.emailAddress)));
+      // }
     });
   }
 

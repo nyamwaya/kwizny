@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kwizny/src/ui/login.dart';
 import 'package:kwizny/src/blocs/bloc_base.dart';
 import 'package:kwizny/src/blocs/login_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 
 class MyApp extends StatelessWidget {
   @override

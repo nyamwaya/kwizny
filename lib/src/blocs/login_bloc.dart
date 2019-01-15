@@ -52,13 +52,13 @@ class LoginBloc implements BlocBase {
   });
 
   Future<String> submit() {
-   // return _repository.authenticateUser(_email.value, _password.value);
    return _repository.signInWithEmailAndPasswordilAndPassword(_email.value, _password.value);
   }
 
-  Future<void> registerUser() {
-    return _repository.createUserWithEmailAndPassword(_email.value, _password.value);
-  }
+  /// Don't need this method because of singup bloc...delete this when it makes sence to
+  /// Future<void> registerUser() {
+  //   return _repository.createUserWithEmailAndPassword(_email.value, _password.value);
+  // }
   
   @override
   void dispose() async{
