@@ -1,3 +1,7 @@
+import 'package:kwizny/src/blocs/bloc_event_state.dart';
+
+/// Not sure what this event does
+/// future aleckson, I hope you would have figured it out.
 
 abstract class AuthenticationEvent extends BlocEvent {
   final String name;
