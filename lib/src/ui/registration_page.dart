@@ -70,6 +70,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   onPressed: (snapshot.hasData && snapshot.data == true)
                       ? () {
                           // launch the registration process
+                          // maybe confirm 
                         }
                       : null,
                 );

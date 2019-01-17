@@ -5,6 +5,7 @@ import 'package:kwizny/src/blocs/bloc_auth_bloc.dart';
 import 'package:kwizny/src/blocs/bloc_auth_state.dart';
 import 'package:kwizny/src/blocs/bloc_base.dart';
 import 'package:kwizny/src/blocs/event_state_builder.dart';
+import 'package:kwizny/src/ui/widgets/pending_action.dart';
 
 
 class AuthenticationPage extends StatelessWidget {
@@ -32,7 +33,7 @@ class AuthenticationPage extends StatelessWidget {
               bloc: bloc,
               builder: (BuildContext context, AuthenticationState state) {
                 if (state.isAuthenticating) {
-                  //display a pending action
+                  //find out how to put a loading loop
                   return PendingAction();
                 }
 
