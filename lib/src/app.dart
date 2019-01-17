@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kwizny/src/blocs/bloc_auth_bloc.dart';
+import 'package:kwizny/src/ui/decicion_screen.dart';
 import 'package:kwizny/src/ui/login.dart';
 import 'package:kwizny/src/blocs/bloc_base.dart';
 import 'package:kwizny/src/blocs/login_bloc.dart';
@@ -10,10 +12,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'LoginPage',
-        home: BlocProvider<LoginBloc>(
-          bloc: LoginBloc(),
-          child: LoginScreen(),
-        ));
+        home: BlocProvider<AuthenticationBloc>(
+          bloc: AuthenticationBloc(),
+          child: MaterialApp(
+                       title: 'Kwizny',
+            theme: ThemeData(
+              primarySwatch: Colors.red
+            ),
+            home: DecisionPage(),
+          )
+ 
+          ),
+        );
 
     // return LoginBlocProvider(
     //   child: GoalsBlocProvider(
