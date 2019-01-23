@@ -1,6 +1,6 @@
-import 'package:kwizny/src/blocs/auth_event_bloc.dart';
-import 'package:kwizny/src/blocs/bloc_auth_state.dart';
-import 'package:kwizny/src/blocs/bloc_event_state.dart';
+import 'package:kwizny/src/blocs/authentication/authentication_event.dart';
+import 'package:kwizny/src/blocs/authentication/authentication_state.dart';
+import 'package:kwizny/src/bloc_helpers/bloc_event_state.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:kwizny/utils/EmailValidator.dart';
 import 'package:kwizny/utils/password_validator.dart';
@@ -20,8 +20,6 @@ class AuthenticationBloc
   final _repository = Repository();
   final BehaviorSubject<String> _emailController = BehaviorSubject<String>();
   final BehaviorSubject<String> _passwordController = BehaviorSubject<String>();
-  final BehaviorSubject<String> _passwordConfirmController =
-      BehaviorSubject<String>();
   //
   //  Inputs
   //
@@ -52,7 +50,7 @@ class AuthenticationBloc
       // Inform that we are proceeding with the authentication
       yield AuthenticationState.authenticating();
 
-      // Simulate a call to the authentication server
+      // Make a call to the firebase authentication
       //await Future.delayed(const Duration(seconds: 2));
       try {
         print(
@@ -71,13 +69,6 @@ class AuthenticationBloc
         yield AuthenticationState.failure();
       }
 
-      // Inform that we have successfuly authenticated, or not
-      //   if (event.name == "failure") {
-      //     yield AuthenticationState.failure();
-      //   } else {
-      //     yield AuthenticationState.authenticated(event.name);
-      //   }
-      // }
     } else {
       if (event is AuthenticationEventLogout) {
         yield AuthenticationState.notAuthenticated();
@@ -85,4 +76,11 @@ class AuthenticationBloc
       }
     }
   }
+
+  @override
+    void dispose() {
+      _emailController.close();
+      _passwordController.close();
+      super.dispose();
+    }
 }

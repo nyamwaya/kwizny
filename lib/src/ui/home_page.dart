@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:kwizny/src/blocs/bloc_auth_bloc.dart';
-import 'package:kwizny/src/blocs/bloc_base.dart';
+import 'package:kwizny/src/blocs/authentication/authentication_bloc.dart';
 import 'package:kwizny/src/widgets/log_out_button.dart';
 
 
-class RootScreen extends StatefulWidget{
+class HomePage extends StatefulWidget{
   final String email;
 
-  RootScreen(this.email);
+  HomePage(this.email);
 
   @override
   RootScreenState createState() {
@@ -15,12 +14,10 @@ class RootScreen extends StatefulWidget{
   }
 }
 
-class RootScreenState extends State<RootScreen> {
+class RootScreenState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context){
-    AuthenticationBloc bloc = BlocProvider.of<AuthenticationBloc>(context);
-
     return Scaffold(
       body: Container(
         child: Center(

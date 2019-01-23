@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:kwizny/src/blocs/bloc_event_state.dart';
+import 'package:kwizny/src/bloc_helpers/bloc_event_state.dart';
 
 ///This Widget is nothing else but a specialized StreamBuilder, 
 ///which will invoke the builder input argument each time a new
 ///BlocState will be emitted.
 
+typedef Widget AsyncBlocStateBuilder<BlocState>(BuildContext context, BlocState state);
 
-typedef Widget AsyncBlocEventStateBuilder<BlocState>(BuildContext context, BlocState state);
-
-class BlocEventStateBuilder<BlocEvent,BlocState> extends StatelessWidget {
+class BlocEventStateBuilder<BlocState> extends StatelessWidget {
   const BlocEventStateBuilder({
     Key key,
     @required this.builder,
@@ -18,7 +17,7 @@ class BlocEventStateBuilder<BlocEvent,BlocState> extends StatelessWidget {
       super(key: key);
 
   final BlocEventStateBase<BlocEvent,BlocState> bloc;
-  final AsyncBlocEventStateBuilder<BlocState> builder;
+  final AsyncBlocStateBuilder<BlocState> builder;
 
   @override
   Widget build(BuildContext context){

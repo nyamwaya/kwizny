@@ -1,4 +1,4 @@
-import 'package:kwizny/src/blocs/bloc_event_state.dart';
+import 'package:kwizny/src/bloc_helpers/bloc_event_state.dart';
 import 'package:meta/meta.dart';
 
 /// This class will provide the information related to the authentication process.

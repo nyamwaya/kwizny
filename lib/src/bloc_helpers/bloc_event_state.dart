@@ -1,4 +1,4 @@
-import 'package:kwizny/src/blocs/bloc_base.dart';
+import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 

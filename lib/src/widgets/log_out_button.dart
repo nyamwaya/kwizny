@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:kwizny/src/blocs/auth_event_bloc.dart';
-import 'package:kwizny/src/blocs/bloc_auth_bloc.dart';
-import 'package:kwizny/src/blocs/bloc_base.dart';
+import 'package:kwizny/src/blocs/authentication/authentication_bloc.dart';
+import 'package:kwizny/src/blocs/authentication/authentication_event.dart';
+import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
 
 class LogOutButton extends StatelessWidget {
   @override

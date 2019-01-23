@@ -1,13 +1,10 @@
-import 'package:kwizny/src/blocs/bloc_base.dart';
-import 'package:kwizny/src/resources/repository.dart';
+import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
 import 'package:kwizny/utils/EmailValidator.dart';
 import 'package:kwizny/utils/password_validator.dart';
 import 'package:rxdart/rxdart.dart';
 
-class RegistrationFormBloc extends Object
-    with EmailValidator, PasswordValidator
-    implements BlocBase {
-  final _repository = Repository();
+class RegistrationFormBloc extends Object with EmailValidator, PasswordValidator implements BlocBase {
+  //final _repository = Repository();
 
   final BehaviorSubject<String> _firstNameController = BehaviorSubject<String>();
   final BehaviorSubject<String> _emailController = BehaviorSubject<String>();
@@ -20,8 +17,7 @@ class RegistrationFormBloc extends Object
   Function(String) get onFirstNameChanged => _firstNameController.sink.add;
   Function(String) get onEmailChanged => _emailController.sink.add;
   Function(String) get onPasswordChanged => _passwordController.sink.add;
-  Function(String) get onRetypePasswordChanged =>
-      _passwordConfirmController.sink.add;
+  Function(String) get onRetypePasswordChanged => _passwordConfirmController.sink.add;
 
   //
   // Validators
@@ -43,14 +39,15 @@ class RegistrationFormBloc extends Object
   Stream<bool> get registerValid => Observable.combineLatest3(
       email, password, confirmPassword, (e, p, c) => true);
 
-  Future<String> submit() {
-    return _repository.createUserWithEmailAndPassword(
-        _emailController.value, _passwordController.value);
-        //firestore create user document with name and email
-  }
+  // Future<String> submit() {
+  //   return _repository.createUserWithEmailAndPassword(
+  //       _emailController.value, _passwordController.value);
+  //       //firestore create user document with name and email
+  // }
 
   @override
   void dispose() {
+    _firstNameController.close();
     _emailController?.close();
     _passwordController?.close();
     _passwordConfirmController?.close();
