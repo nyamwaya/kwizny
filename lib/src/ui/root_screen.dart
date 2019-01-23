@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kwizny/src/blocs/bloc_auth_bloc.dart';
 import 'package:kwizny/src/blocs/bloc_base.dart';
-import 'package:kwizny/src/ui/widgets/log_out_button.dart';
+import 'package:kwizny/src/widgets/log_out_button.dart';
 
 
 class RootScreen extends StatefulWidget{

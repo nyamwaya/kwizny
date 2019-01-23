@@ -6,8 +6,8 @@ import 'package:kwizny/src/blocs/bloc_base.dart';
 import 'package:kwizny/src/blocs/event_state_builder.dart';
 import 'package:kwizny/src/ui/auth/registration_page.dart';
 import 'package:kwizny/src/ui/root_screen.dart';
-import 'package:kwizny/src/ui/widgets/log_out_button.dart';
-import 'package:kwizny/src/ui/widgets/pending_action.dart';
+import 'package:kwizny/src/widgets/log_out_button.dart';
+import 'package:kwizny/src/widgets/pending_action.dart';
 import 'package:kwizny/utils/StringConstant.dart';
 
 class AuthenticationPage extends StatelessWidget {
@@ -31,8 +31,7 @@ class AuthenticationPage extends StatelessWidget {
             leading: Container(),
           ),
           body: Container(
-            child:
-                BlocEventStateBuilder<AuthenticationEvent, AuthenticationState>(
+            child: BlocEventStateBuilder<AuthenticationEvent, AuthenticationState>(
               bloc: bloc,
               builder: (BuildContext context, AuthenticationState state) {
                 if (state.isAuthenticating) {
@@ -40,12 +39,12 @@ class AuthenticationPage extends StatelessWidget {
                   return PendingAction();
                 }
 
-                if (state.isAuthenticated) {
-                  //show home page
-                  return Container(
-                    child: LogOutButton(),
-                  );
-                }
+                // if (state.isAuthenticated) {
+                //   //show home page
+                //   return Container(
+                //     child: LogOutButton(),
+                //   );
+                // }
 
                 //  loginContent(bloc, context);
 
@@ -70,22 +69,18 @@ class AuthenticationPage extends StatelessWidget {
                   Container(margin: EdgeInsets.only(top: 5.0, bottom: 5.0)),
                 );
 
-                children.add(
-                  StreamBuilder(
-                    stream: bloc.password,
-                    builder: (BuildContext context, AsyncSnapshot<String> snapshot){
-                      return TextField(
-                        decoration: InputDecoration(
-                          labelText: 'password',
-                          errorText: snapshot.error
-                        ),
-                        obscureText: false,
-                        onChanged: bloc.onPasswordChanged,
-                      );
-                    },
-                  )
-                );
-              
+                children.add(StreamBuilder(
+                  stream: bloc.password,
+                  builder:
+                      (BuildContext context, AsyncSnapshot<String> snapshot) {
+                    return TextField(
+                      decoration: InputDecoration(
+                          labelText: 'password', errorText: snapshot.error),
+                      obscureText: false,
+                      onChanged: bloc.onPasswordChanged,
+                    );
+                  },
+                ));
 
                 // children.add(StreamBuilder(
                 //   stream: bloc.password,
