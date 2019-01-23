@@ -4,9 +4,7 @@ import 'package:kwizny/src/widgets/log_out_button.dart';
 
 
 class HomePage extends StatefulWidget{
-  final String email;
 
-  HomePage(this.email);
 
   @override
   RootScreenState createState() {

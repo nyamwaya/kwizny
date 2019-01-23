@@ -3,7 +3,6 @@ import 'package:kwizny/src/bloc_widgets/bloc_state_builder.dart';
 import 'package:kwizny/src/blocs/authentication/authentication_bloc.dart';
 import 'package:kwizny/src/blocs/authentication/authentication_state.dart';
 import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
-import 'package:kwizny/src/resources/repository.dart';
 import 'package:kwizny/src/ui/auth/login_page.dart';
 import 'package:kwizny/src/ui/home_page.dart';
 
@@ -24,28 +23,37 @@ class DecisionPageState extends State<DecisionPage> {
     return BlocEventStateBuilder<AuthenticationState>(
         bloc: bloc,
         builder: (BuildContext context, AuthenticationState state) {
-          if (state != oldAuthenticationState) {}
-          bloc.currentUser.then((userId) {
-            print("This is my ID $userId");
-            if (userId == null) {
-              //there is no user on file show login page
-              if (state != oldAuthenticationState) {
-                oldAuthenticationState = state;
+          if (state != oldAuthenticationState) {
+            bloc.currentUser.then((userId) {
 
-                if (state.isAuthenticated) {
-                  _redirectToPage(context, HomePage("aleckson@gmail.com"));
-                } else if (state.isAuthenticating || state.hasFailed) {
-                  //do nothing
-                } else{
-                  _redirectToPage(context, LoginPage());
-                }
-              }
-            } else {
-              //there is a user on file, redirect
-              _redirectToPage(context, HomePage("aleckson@gmail.com"));
-            }
-          });
+              
+          if (state.isAuthenticated){
+            _redirectToPage(context, HomePage());
+          } else if (state.isAuthenticating || state.hasFailed){
+            //do nothing
+          } else {
+            _redirectToPage(context, LoginPage());
+          }
+              // print("This is my ID $userId");
+              // if (userId == null) {
+              //   //there is no user on file show login page
+              //   if (state != oldAuthenticationState) {
+              //     oldAuthenticationState = state;
 
+              //     if (state.isAuthenticated) {
+              //       _redirectToPage(context, HomePage("aleckson@gmail.com"));
+              //     } else if (state.isAuthenticating || state.hasFailed) {
+              //       //do nothing
+              //     } else {
+              //       _redirectToPage(context, LoginPage());
+              //     }
+              //   }
+              // } else {
+              //   //there is a user on file, redirect
+              //   _redirectToPage(context, HomePage("aleckson@gmail.com"));
+              // }
+            });
+          }
           return Container();
         });
   }

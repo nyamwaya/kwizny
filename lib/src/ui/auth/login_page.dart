@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
                 }
 
                 if (state.isAuthenticated) {
-                  return HomePage("");
+                  return HomePage();
                 }
 
                 if (state.hasFailed) {

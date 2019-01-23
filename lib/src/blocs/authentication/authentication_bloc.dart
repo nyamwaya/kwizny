@@ -63,16 +63,17 @@ class AuthenticationBloc
         print("Failed Login: $e");
       }
 
-      if (await _repository.currentuser() != null) {
-        yield AuthenticationState.authenticated(event.name);
-      } else {
-        yield AuthenticationState.failure();
-      }
+      // if (await _repository.currentuser() != null) {
+      //   yield AuthenticationState.authenticated(event.name);
+      // } else {
+      //   yield AuthenticationState.failure();
+      // }
 
     } else {
       if (event is AuthenticationEventLogout) {
-        yield AuthenticationState.notAuthenticated();
         await  _repository.signOut();
+        yield AuthenticationState.notAuthenticated();
+        
       }
     }
   }
