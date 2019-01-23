@@ -5,7 +5,7 @@ import 'package:rxdart/rxdart.dart';
 abstract class BlocEvent extends Object {}
 abstract class BlocState extends Object {}
 
-abstract class BlocEventStateBase<BlocEvent, BlocState> implements BlocBase {
+abstract class BlocEventStateBase<BlocEvent, BlocState> extends Object implements BlocBase {
   PublishSubject<BlocEvent> _eventController = PublishSubject<BlocEvent>();
   BehaviorSubject<BlocState> _stateController = BehaviorSubject<BlocState>();
 

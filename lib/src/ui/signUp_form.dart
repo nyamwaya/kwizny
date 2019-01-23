@@ -3,7 +3,7 @@ import 'package:kwizny/src/blocs/signup_bloc.dart';
 import 'package:kwizny/src/blocs/bloc_base.dart';
 import 'package:kwizny/src/ui/root_screen.dart';
 import 'package:kwizny/utils/StringConstant.dart';
-import 'package:kwizny/src/ui/login.dart';
+import 'package:kwizny/src/ui/auth/login.dart';
 import 'package:kwizny/src/blocs/login_bloc.dart';
 
 class SignupForm extends StatelessWidget {

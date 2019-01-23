@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kwizny/src/blocs/bloc_auth_bloc.dart';
-import 'package:kwizny/src/ui/decicion_screen.dart';
-import 'package:kwizny/src/ui/login.dart';
+import 'package:kwizny/src/ui/auth/decicion_screen.dart';
+import 'package:kwizny/src/ui/auth/login.dart';
 import 'package:kwizny/src/blocs/bloc_base.dart';
 import 'package:kwizny/src/blocs/login_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
