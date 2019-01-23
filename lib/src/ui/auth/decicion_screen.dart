@@ -47,20 +47,6 @@ class DecisionPageState extends State<DecisionPage> {
             }
           });
 
-          // if (state != oldAuthenticationState) {
-          //   oldAuthenticationState = state;
-
-          //   if (state.isAuthenticated) {
-          //     _redirectToPage(context, RootScreen("aleckson@gmail.com"));
-          //   } else if (state.isAuthenticating || state.hasFailed) {
-          //     //do nothing
-          //   } else {
-          //     _redirectToPage(context, AuthenticationPage());
-          //   }
-          // }
-
-          // This page does not need to display anything since it will
-          // always remind behind any active page (and thus 'hidden').
           return Container();
         });
   }
