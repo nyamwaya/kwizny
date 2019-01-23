@@ -40,10 +40,14 @@ class AuthenticationBloc
       Observable.combineLatest2(email, password, (e, p) => true);
 
   //get cuttrent user
-  Future<String> get currentUser =>  _repository.currentuser();
+  Future<String> get currentUser => _repository.currentuser();
+
+  //signOut Current user
+  Future<void> get signOut => _repository.signOut();
 
   @override
-  Stream<AuthenticationState> eventHandler(AuthenticationEvent event, AuthenticationState currentState) async* {
+  Stream<AuthenticationState> eventHandler(
+      AuthenticationEvent event, AuthenticationState currentState) async* {
     if (event is AuthenticationEventLogin) {
       // Inform that we are proceeding with the authentication
       yield AuthenticationState.authenticating();
@@ -74,9 +78,10 @@ class AuthenticationBloc
       //     yield AuthenticationState.authenticated(event.name);
       //   }
       // }
-
+    } else {
       if (event is AuthenticationEventLogout) {
         yield AuthenticationState.notAuthenticated();
+        await  _repository.signOut();
       }
     }
   }

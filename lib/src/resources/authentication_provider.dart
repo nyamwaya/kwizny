@@ -30,8 +30,9 @@ class AuthenticationProvider {
 
   Future<String> currentuser() async {
     FirebaseUser user = await _firebaseAuth.currentUser();
-    return user.uid;
+    return user?.uid;
   }
+
   // The problem here is that the updateProfile method is not recognized
   // Look into this issue when you do the edit profile / change password
   // Future<String> updateProfileChangeRequest(String firstName) async {

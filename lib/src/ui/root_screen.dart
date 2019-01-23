@@ -22,7 +22,11 @@ class RootScreenState extends State<RootScreen> {
     AuthenticationBloc bloc = BlocProvider.of<AuthenticationBloc>(context);
 
     return Scaffold(
-      body: LogOutButton(),
+      body: Container(
+        child: Center(
+          child: LogOutButton(),
+        )
+      ),
     );
   }
 }
