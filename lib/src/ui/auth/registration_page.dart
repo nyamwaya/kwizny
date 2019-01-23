@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kwizny/src/blocs/reg_form_bloc.dart';
+import 'package:kwizny/src/ui/auth/auth_page.dart';
 
 class RegistrationForm extends StatefulWidget {
   @override
@@ -23,18 +24,96 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
+    return SafeArea(
+      child: Scaffold(
+          body: Container(
+        padding: EdgeInsets.all(16),
+        child: ListView(
+          children: <Widget>[_logo(), _greeting(), _regForm()],
+        ),
+      )),
+    );
+  }
+
+  Widget _logo() {
+   return Container(
+     padding: EdgeInsets.only(top: 16),
+      child:  Column(
+        children: <Widget>[
+          ClipRect(
+            child: Image.asset(
+              'assets/images/logo.png',
+              fit: BoxFit.scaleDown,
+            ),
+          ),
+          SizedBox(height: 16.0),
+          Text(
+            'Kwizny',
+            style: TextStyle(
+              color: Color(0xfffd4241),
+              fontSize: 28.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _greeting() {
+    return Container(
+        // height: double.,
+        padding: EdgeInsets.only(top: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              "Ready to eat?",
+              style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xff3e4564)),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 8),
+              child: Text(
+                "Sign up to continue",
+                style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ));
+  }
+
+  Widget _regForm() {
+    return Container(
+      padding: EdgeInsets.only(top: 16),
+      child: Form(
         child: Column(
           children: <Widget>[
-            Card(
+            Container(child: StreamBuilder<String>(
+                // stream: _registrationFormBloc.firstName, add first name validation to the field
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+              return TextField(
+                decoration: InputDecoration(
+                  labelText: "First Name",
+                  errorText: snapshot.error,
+                ),
+                onChanged: _registrationFormBloc.onFirstNameChanged,
+                keyboardType: TextInputType.text,
+              );
+            })),
+            Container(
               child: StreamBuilder<String>(
                   stream: _registrationFormBloc.email,
                   builder:
                       (BuildContext context, AsyncSnapshot<String> snapshot) {
                     return TextField(
                       decoration: InputDecoration(
-                        labelText: 'email',
+                        labelText: 'Email',
                         errorText: snapshot.error,
                       ),
                       onChanged: _registrationFormBloc.onEmailChanged,
@@ -42,14 +121,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     );
                   }),
             ),
-            Card(
+            Container(
               child: StreamBuilder<String>(
                   stream: _registrationFormBloc.password,
                   builder:
                       (BuildContext context, AsyncSnapshot<String> snapshot) {
                     return TextField(
                       decoration: InputDecoration(
-                        labelText: 'password',
+                        labelText: 'Password',
                         errorText: snapshot.error,
                       ),
                       obscureText: false,
@@ -57,14 +136,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     );
                   }),
             ),
-            Card(
+            Container(
               child: StreamBuilder<String>(
                   stream: _registrationFormBloc.confirmPassword,
                   builder:
                       (BuildContext context, AsyncSnapshot<String> snapshot) {
                     return TextField(
                       decoration: InputDecoration(
-                        labelText: 'retype password',
+                        labelText: 'Confirm password',
                         errorText: snapshot.error,
                       ),
                       obscureText: false,
@@ -72,25 +151,73 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     );
                   }),
             ),
-            Card(
-              child: StreamBuilder<bool>(
-                  stream: _registrationFormBloc.registerValid,
-                  builder:
-                      (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                    return RaisedButton(
-                      child: Text('Register'),
-                      onPressed: (snapshot.hasData && snapshot.data == true)
-                          ? () {
-                            _registrationFormBloc.submit();
-                              // launch the registration process
-                              // maybe confirm
-                            }
-                          : null,
-                    );
-                  }),
-            )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(top: 16),
+                      child: StreamBuilder<bool>(
+                          stream: _registrationFormBloc.registerValid,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<bool> snapshot) {
+                            return RaisedButton(
+                              child: Text('Sign up'),
+                              elevation: 6,
+                              textColor: Colors.white,
+                              splashColor: Color(0xff192865),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0)),
+                              onPressed:
+                                  (snapshot.hasData && snapshot.data == true)
+                                      ? () {
+                                          _registrationFormBloc.submit();
+                                          // launch the registration process
+                                          // maybe confirm
+                                        }
+                                      : null,
+                            );
+                          }),
+                    ),
+                    _alreadyHaveAnAccount(),
+                  ],
+                )
+              ],
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  Padding _alreadyHaveAnAccount() {
+    return Padding(
+      padding: EdgeInsets.only(top: 16),
+      child: InkWell(
+        child: new RichText(
+          text: new TextSpan(
+            text: null,
+            style: TextStyle(fontSize: 16.0, color: Colors.grey),
+            children: <TextSpan>[
+              new TextSpan(
+                text: 'Already have an account? ',
+              ),
+              new TextSpan(
+                  text: 'Login',
+                  style: new TextStyle(
+                      // color: Colors.black87,
+                      fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AuthenticationPage()),
+          );
+        },
       ),
     );
   }
