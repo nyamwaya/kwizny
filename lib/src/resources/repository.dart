@@ -26,6 +26,8 @@ class Repository {
 
   Future<String> currentuser() async => _authenticationProvider.currentuser();
 
+  Future<void> signOut() async => _authenticationProvider.signOut();
+
   /// firestore calls
   Future<void> uploadGoal(String email, String title, String goal) =>
       _firestoreProvider.uploadGoal(title, email, goal);
