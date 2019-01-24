@@ -27,13 +27,11 @@ class DecisionPageState extends State<DecisionPage> {
           if (state != oldAuthenticationState) {
             bloc.currentUser.then((userId) {
 
-              if (state.isAuthenticated) {
+              if (state.isAuthenticated || userId != null) {
                 _redirectToPage(context, HomePage());
               } else if (state.isAuthenticating || state.hasFailed) {
                 //do nothing
-              } else if(userId != null){
-                _redirectToPage(context, HomePage());
-              } else {
+              }else {
                 _redirectToPage(context, LoginPage());
               }
               // print("This is my ID $userId");

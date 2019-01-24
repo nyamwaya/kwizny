@@ -5,6 +5,7 @@ import 'package:kwizny/src/blocs/registration/registration_bloc.dart';
 import 'package:kwizny/src/blocs/registration/registration_event.dart';
 import 'package:kwizny/src/blocs/registration/registration_state.dart';
 import 'package:kwizny/src/ui/auth/login_page.dart';
+import 'package:kwizny/src/ui/home_page.dart';
 import 'package:kwizny/src/widgets/pending_action.dart';
 
 class RegistrationForm extends StatefulWidget {
@@ -55,13 +56,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
         });
   }
 
-   _buildSuccess() {
-    //Launch root screen
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => RegistrationForm()),
-    );
-    print('Registration Success ');
+    _buildSuccess() {
+    // root screen
+      print('Registration Success ');
+      return HomePage();
+//      return _redirectToPage(context, HomePage());
   }
 
   Widget _buildFailure() {
@@ -257,4 +256,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
       ),
     );
   }
+
+
 }
