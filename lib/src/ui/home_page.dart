@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kwizny/src/blocs/authentication/authentication_bloc.dart';
-import 'package:kwizny/src/widgets/log_out_button.dart';
+import 'package:kwizny/src/ui/home_screen.dart';
 
-
-class HomePage extends StatefulWidget{
-
-
+class HomePage extends StatefulWidget {
   @override
   RootScreenState createState() {
     return new RootScreenState();
@@ -13,15 +9,10 @@ class HomePage extends StatefulWidget{
 }
 
 class RootScreenState extends State<HomePage> {
-
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: LogOutButton(),
-        )
-      ),
+      body: HomeScreen(),
     );
   }
 }
