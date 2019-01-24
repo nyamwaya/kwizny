@@ -41,9 +41,12 @@ class LoginPage extends StatelessWidget {
 
                 if (state.hasFailed) {
                   print("Authentication failure!");
-                  return Text("Authentication failure!");
-                }
 
+//                  final scaff = Scaffold.of(context);
+//
+//                  SnackBar(content: Text("Auth Failed"), duration: Duration(seconds: 5));
+//
+                }
                 return Container(
                   child: LoginForm(
                     myBloc: bloc,
