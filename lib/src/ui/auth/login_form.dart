@@ -23,6 +23,7 @@ class LoginForm extends StatelessWidget {
   Widget _logo() {
     return Container(
       padding: EdgeInsets.only(top: 16),
+      margin: EdgeInsets.only(top: 50),
       child: Column(
         children: <Widget>[
           ClipRect(

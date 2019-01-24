@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:kwizny/src/bloc_widgets/bloc_state_builder.dart';
 import 'package:kwizny/src/blocs/authentication/authentication_bloc.dart';
@@ -26,14 +27,15 @@ class DecisionPageState extends State<DecisionPage> {
           if (state != oldAuthenticationState) {
             bloc.currentUser.then((userId) {
 
-              
-          if (state.isAuthenticated){
-            _redirectToPage(context, HomePage());
-          } else if (state.isAuthenticating || state.hasFailed){
-            //do nothing
-          } else {
-            _redirectToPage(context, LoginPage());
-          }
+              if (state.isAuthenticated) {
+                _redirectToPage(context, HomePage());
+              } else if (state.isAuthenticating || state.hasFailed) {
+                //do nothing
+              } else if(userId != null){
+                _redirectToPage(context, HomePage());
+              } else {
+                _redirectToPage(context, LoginPage());
+              }
               // print("This is my ID $userId");
               // if (userId == null) {
               //   //there is no user on file show login page
