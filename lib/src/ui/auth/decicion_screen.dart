@@ -5,7 +5,7 @@ import 'package:kwizny/src/blocs/authentication/authentication_bloc.dart';
 import 'package:kwizny/src/blocs/authentication/authentication_state.dart';
 import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
 import 'package:kwizny/src/ui/auth/login_page.dart';
-import 'package:kwizny/src/ui/home_page.dart';
+import 'package:kwizny/src/ui/home/home_page.dart';
 
 class DecisionPage extends StatefulWidget {
   @override

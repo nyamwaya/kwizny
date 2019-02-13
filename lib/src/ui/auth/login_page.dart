@@ -5,7 +5,7 @@ import 'package:kwizny/src/blocs/authentication/authentication_state.dart';
 import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
 import 'package:kwizny/src/ui/auth/login_form.dart';
 import 'package:kwizny/src/ui/auth/registration_page.dart';
-import 'package:kwizny/src/ui/home_page.dart';
+import 'package:kwizny/src/ui/home/home_page.dart';
 import 'package:kwizny/src/widgets/log_out_button.dart';
 import 'package:kwizny/src/widgets/pending_action.dart';
 import 'package:kwizny/utils/StringConstant.dart';

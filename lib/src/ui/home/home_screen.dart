@@ -9,7 +9,6 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
           LogOutButton()
         ],
-
       ),
     );
   }

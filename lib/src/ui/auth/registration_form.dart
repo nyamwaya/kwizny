@@ -5,7 +5,7 @@ import 'package:kwizny/src/blocs/registration/registration_bloc.dart';
 import 'package:kwizny/src/blocs/registration/registration_event.dart';
 import 'package:kwizny/src/blocs/registration/registration_state.dart';
 import 'package:kwizny/src/ui/auth/login_page.dart';
-import 'package:kwizny/src/ui/home_page.dart';
+import 'package:kwizny/src/ui/home/home_page.dart';
 import 'package:kwizny/src/widgets/pending_action.dart';
 
 class RegistrationForm extends StatefulWidget {
