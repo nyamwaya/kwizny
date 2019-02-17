@@ -9,8 +9,7 @@ import 'package:kwizny/src/resources/repository.dart';
 ///This BLoC is responsible for the handling the authentication process based on events.
 ///will likely turn this into the login bloc, and create a second one for signup bloc.
 ///
-class AuthenticationBloc
-    extends BlocEventStateBase<AuthenticationEvent, AuthenticationState>
+class AuthenticationBloc extends BlocEventStateBase<AuthenticationEvent, AuthenticationState>
     with EmailValidator, PasswordValidator {
   AuthenticationBloc()
       : super(
@@ -42,6 +41,7 @@ class AuthenticationBloc
 
   //signOut Current user
   Future<void> get signOut => _repository.signOut();
+
 
   @override
   Stream<AuthenticationState> eventHandler(

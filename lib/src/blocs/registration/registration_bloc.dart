@@ -21,13 +21,13 @@ class RegistrationBloc
 
       // make a call to firebase auth
       try {
-        await _repository.createUserWithEmailAndPassword(event.email, event.password);
+        await _repository.createUserWithEmailAndPassword(
+            event.email, event.password);
         yield RegistrationState.success();
       } catch (e) {
         yield RegistrationState.failure();
         print("Failed Registration: $e");
       }
-
     }
   }
 }

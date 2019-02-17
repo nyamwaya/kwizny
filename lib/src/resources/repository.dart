@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kwizny/src/resources/authentication_provider.dart';
 import 'firestore_provider.dart';
@@ -29,16 +30,18 @@ class Repository {
   Future<void> signOut() async => _authenticationProvider.signOut();
 
   /// firestore calls
-  Future<void> uploadGoal(String email, String title, String goal) =>
-      _firestoreProvider.uploadGoal(title, email, goal);
+  Stream<QuerySnapshot> kwizinFeed() => _firestoreProvider.kwizinFeed();
 
-  Stream<DocumentSnapshot> myGoalList(String email) =>
-      _firestoreProvider.myGoalList(email);
+  // Future<void> uploadGoal(String email, String title, String goal) =>
+  //     _firestoreProvider.uploadGoal(title, email, goal);
 
-  Stream<QuerySnapshot> othersGoalList() => _firestoreProvider.othersGoalList();
+  // Stream<DocumentSnapshot> myGoalList(String email) =>
+  //     _firestoreProvider.myGoalList(email);
 
-  void removeGoal(String title, email) =>
-      _firestoreProvider.removeGoal(title, email);
+  // Stream<QuerySnapshot> othersGoalList() => _firestoreProvider.othersGoalList();
+
+  // void removeGoal(String title, email) =>
+  //     _firestoreProvider.removeGoal(title, email);
 
   // Future<int> authenticateUser(String email, String password) =>
   //     _firestoreProvider.authenticateUser(email, password);
