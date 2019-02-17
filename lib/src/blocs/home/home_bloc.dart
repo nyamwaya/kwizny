@@ -25,39 +25,6 @@ class HomeBloc implements BlocBase {
     return _repository.kwizinFeed();
   }
 
-  //  List mapToList({DocumentSnapshot doc, List<DocumentSnapshot> docList}) {
-  //   if (docList != null) {
-  //     List<KwizinFeedList> goalList = [];
-  //     docList.forEach((document) {
-  //       String email = document.data[StringConstant.emailField];
-  //       Map<String, String> goals =
-  //           document.data[StringConstant.goalField] != null
-  //               ? document.data[StringConstant.goalField].cast<String, String>()
-  //               : null;
-  //       if (goals != null) {
-  //         goals.forEach((title, message) {
-  //           OtherGoal otherGoal = OtherGoal(email, title, message);
-  //           goalList.add(otherGoal);
-  //         });
-  //       }
-  //     });
-  //     return goalList;
-  //   } else {
-  //     Map<String, String> goals = doc.data[StringConstant.goalField] != null
-  //         ? doc.data[StringConstant.goalField].cast<String, String>()
-  //         : null;
-  //     List<Goal> goalList = [];
-  //     if (goals != null) {
-  //       goals.forEach((title, message) {
-  //         Goal goal = Goal(title, message);
-  //         goalList.add(goal);
-  //       });
-  //     }
-  //     return goalList;
-  //   }
-  // }
-
-
   @override
   Future dispose() async {
     _itemsController?.close();
