@@ -12,4 +12,9 @@ class FirestoreProvider {
   Stream<QuerySnapshot> kwizinFeed() {
     return _firestore.collection("kwizin_feed").snapshots();
   }
+
+  Future<String> createUserProfile(String name, String email) async{
+    DocumentReference ref = await _firestore.collection('users').add({'userName': '$name', 'email': '$email'});
+    return ref.documentID;
+  }
 }

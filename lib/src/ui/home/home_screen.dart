@@ -32,13 +32,13 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        backgroundColor: Colors.grey.shade50,
+        backgroundColor: Color(0xfffd4241),
         elevation: 0.0,
+        title: Text("Kwiziny"),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.exit_to_app),
-            color: Colors.grey,
-            iconSize: 28,
+            color: Colors.white,
             tooltip: 'Logout button',
             onPressed: () {
               LogOutButton();

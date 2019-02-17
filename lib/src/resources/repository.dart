@@ -31,6 +31,7 @@ class Repository {
 
   /// firestore calls
   Stream<QuerySnapshot> kwizinFeed() => _firestoreProvider.kwizinFeed();
+  Future<String> createUserProfile(String name, String email) =>_firestoreProvider.createUserProfile(name, email);
 
   // Future<void> uploadGoal(String email, String title, String goal) =>
   //     _firestoreProvider.uploadGoal(title, email, goal);

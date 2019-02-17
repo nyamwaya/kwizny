@@ -100,7 +100,7 @@ class _KwizinItemWidgetState extends State<KwizinItemWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  "${widget.kwizinItem.name}",
+                  "${widget.kwizinItem.userName}",
                   style: TextStyle(
                       fontFamily: 'sofiapro',
                       fontSize: 20,

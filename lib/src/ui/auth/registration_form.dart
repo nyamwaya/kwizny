@@ -56,10 +56,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
         });
   }
 
-    _buildSuccess() {
+  _buildSuccess() {
     // root screen
-      print('Registration Success ');
-      return HomePage();
+    print('Registration Success ');
+    return HomePage();
 //      return _redirectToPage(context, HomePage());
   }
 
@@ -210,7 +210,6 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                               email: _emailController.text,
                                               password:
                                                   _passwordController.text));
-                        
                                     }
                                   : null,
                             );
@@ -256,6 +255,4 @@ class _RegistrationFormState extends State<RegistrationForm> {
       ),
     );
   }
-
-
 }

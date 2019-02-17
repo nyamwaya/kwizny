@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class KwizinFeedList {
    String _pictureURL;
    String _name;
+   String _userName;
    String _rating;
    String _likes;
    String _comments;
@@ -14,6 +15,7 @@ class KwizinFeedList {
   KwizinFeedList(
     this._pictureURL, 
     this._name, 
+    this._userName,
     this._rating,
     this._likes,
     this._comments, 
@@ -24,6 +26,7 @@ class KwizinFeedList {
   KwizinFeedList.map(dynamic data){
     this._pictureURL = data['pictureURL'];
     this._name = data['name'];
+    this._userName = data['userName'];
     this._rating = data['rating'];
     this._likes = data['likes'];
     this._comments = data['comments'];
@@ -38,6 +41,8 @@ class KwizinFeedList {
   String get pictureURL => _pictureURL;
 
   String get name => _name;
+
+  String get userName => _userName;
 
   String get rating => _rating;
 

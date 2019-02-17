@@ -24,8 +24,7 @@ class RegistrationFormBloc extends Object with EmailValidator, PasswordValidator
   //
   Stream<String> get email => _emailController.stream.transform(validateEmail);
   Stream<String> get password => _passwordController.stream.transform(validatePassword);
-  Stream<String> get confirmPassword => _passwordConfirmController.stream
-          .transform(validatePassword)
+  Stream<String> get confirmPassword => _passwordConfirmController.stream.transform(validatePassword)
           .doOnData((String c) {
         // If the password is accepted (after validation of the rules)
         // we need to ensure both password and retyped password match
@@ -38,12 +37,6 @@ class RegistrationFormBloc extends Object with EmailValidator, PasswordValidator
   // Registration button
   Stream<bool> get registerValid => Observable.combineLatest3(
       email, password, confirmPassword, (e, p, c) => true);
-
-  // Future<String> submit() {
-  //   return _repository.createUserWithEmailAndPassword(
-  //       _emailController.value, _passwordController.value);
-  //       //firestore create user document with name and email
-  // }
 
   @override
   void dispose() {

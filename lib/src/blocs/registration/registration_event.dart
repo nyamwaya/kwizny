@@ -5,11 +5,13 @@ class RegistrationEvent extends BlocEvent {
     this.event,
     this.email,
     this.password,
+    this.userName,
   });
 
   final RegistrationEventType event;
   final String email;
   final String password;
+  final String userName;
 }
 
 enum RegistrationEventType {

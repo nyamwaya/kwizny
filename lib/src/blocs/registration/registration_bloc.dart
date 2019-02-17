@@ -23,6 +23,8 @@ class RegistrationBloc
       try {
         await _repository.createUserWithEmailAndPassword(
             event.email, event.password);
+        await _repository.createUserProfile(event.userName, event.email);
+
         yield RegistrationState.success();
       } catch (e) {
         yield RegistrationState.failure();
