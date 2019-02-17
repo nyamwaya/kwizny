@@ -31,10 +31,25 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: new AppBar(
+        backgroundColor: Colors.grey.shade50,
+        elevation: 0.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            color: Colors.grey,
+            iconSize: 28,
+            tooltip: 'Logout button',
+            onPressed: () {
+              LogOutButton();
+            },
+          ),
+        ],
+      ),
       body: Container(
         alignment: Alignment(0.0, 0.0),
         child: StreamBuilder(
-          stream: _bloc.geFeedListItems(), 
+          stream: _bloc.geFeedListItems(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (!snapshot.hasData) return LinearProgressIndicator();
@@ -56,6 +71,29 @@ class HomeScreenState extends State<HomeScreen> {
     final record = KwizinFeedList.fromSnapshot(data);
     return KwizinItemWidget(
       kwizinItem: record,
+    );
+  }
+
+  Widget _toolbar() {
+    return new Container(
+      color: Colors.white,
+      margin:
+          EdgeInsets.only(top: MediaQuery.of(context).padding.top, bottom: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.exit_to_app,
+              color: Colors.grey,
+            ),
+            onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LogOutButton()),
+                ),
+          )
+        ],
+      ),
     );
   }
 }
