@@ -30,31 +30,34 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: new AppBar(
-        backgroundColor: Color(0xfffd4241),
-        elevation: 0.0,
-        title: Text("Kwiziny"),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.exit_to_app),
-            color: Colors.white,
-            tooltip: 'Logout button',
-            onPressed: () {
-              LogOutButton();
+    return SafeArea(
+      child: Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Color(0xfffd4241),
+          elevation: 0.0,
+          title: Text("Kwiziny"),
+          actions: <Widget>[
+            LogOutButton()
+            // IconButton(
+            //   icon: Icon(Icons.exit_to_app),
+            //   color: Colors.white,
+            //   tooltip: 'Logout button',
+            //   onPressed: () {
+                
+            //   },
+            // ),
+          ],
+        ),
+        body: Container(
+          alignment: Alignment(0.0, 0.0),
+          child: StreamBuilder(
+            stream: _bloc.geFeedListItems(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (!snapshot.hasData) return LinearProgressIndicator();
+              return _buildList(context, snapshot.data.documents);
             },
           ),
-        ],
-      ),
-      body: Container(
-        alignment: Alignment(0.0, 0.0),
-        child: StreamBuilder(
-          stream: _bloc.geFeedListItems(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (!snapshot.hasData) return LinearProgressIndicator();
-            return _buildList(context, snapshot.data.documents);
-          },
         ),
       ),
     );
@@ -74,26 +77,4 @@ class HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _toolbar() {
-    return new Container(
-      color: Colors.white,
-      margin:
-          EdgeInsets.only(top: MediaQuery.of(context).padding.top, bottom: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.exit_to_app,
-              color: Colors.grey,
-            ),
-            onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LogOutButton()),
-                ),
-          )
-        ],
-      ),
-    );
-  }
 }

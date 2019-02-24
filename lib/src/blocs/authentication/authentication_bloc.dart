@@ -57,6 +57,8 @@ class AuthenticationBloc extends BlocEventStateBase<AuthenticationEvent, Authent
             "Credentials:${_emailController.value} , ${_passwordController.value}");
         await _repository.signInWithEmailAndPasswordilAndPassword(
             _emailController.value, _passwordController.value);
+
+        //create user in profile
         yield AuthenticationState.authenticated(event.name);
       } catch (e) {
         yield AuthenticationState.failure();

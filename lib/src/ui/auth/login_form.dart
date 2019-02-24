@@ -134,7 +134,7 @@ class LoginForm extends StatelessWidget {
                 text: 'Dont have an account? ',
               ),
               new TextSpan(
-                  text: 'Login',
+                  text: 'Sign up',
                   style: new TextStyle(
                       // color: Colors.black87,
                       fontWeight: FontWeight.bold)),

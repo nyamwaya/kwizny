@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:kwizny/src/bloc_helpers/bloc_event_state.dart';
 import 'package:kwizny/src/blocs/registration/registration_event.dart';
 import 'package:kwizny/src/blocs/registration/registration_state.dart';
@@ -11,6 +13,14 @@ class RegistrationBloc
         );
   final _repository = Repository();
 
+  void myName(String name, String email, String userID) async {
+    //  await _repository.createUserWithEmailAndPassword(
+    //       email, password).then(value = userId);
+    print('The user is $userID');
+
+    await _repository.createUserProfile(name, email, userID);
+  }
+
   @override
   Stream<RegistrationState> eventHandler(
       RegistrationEvent event, RegistrationState currentState) async* {
@@ -21,9 +31,11 @@ class RegistrationBloc
 
       // make a call to firebase auth
       try {
-        await _repository.createUserWithEmailAndPassword(
-            event.email, event.password);
-        await _repository.createUserProfile(event.userName, event.email);
+        await _repository
+            .createUserWithEmailAndPassword(event.email, event.password)
+            .then((value) {
+          myName(event.name, event.email, value);
+        });
 
         yield RegistrationState.success();
       } catch (e) {

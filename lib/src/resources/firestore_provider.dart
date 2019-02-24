@@ -13,8 +13,12 @@ class FirestoreProvider {
     return _firestore.collection("kwizin_feed").snapshots();
   }
 
-  Future<String> createUserProfile(String name, String email) async{
-    DocumentReference ref = await _firestore.collection('users').add({'userName': '$name', 'email': '$email'});
-    return ref.documentID;
+  // Future<String> createUserProfile(String name, String email) async{
+  //   DocumentReference ref = await _firestore.collection('users').add({'userName': '$name', 'email': '$email'});
+  //   return ref.documentID;
+  // }
+
+  Future createUserProfile(String name, String email, String userID) async{
+    await _firestore.collection('users').document(userID).setData({'userName': '$name', 'email': '$email','userId': '$userID'}, merge: true);
   }
 }

@@ -22,8 +22,9 @@ class Repository {
       _authenticationProvider.signInWithEmailAndPassword(email, password);
 
   Future<String> createUserWithEmailAndPassword(
-          String email, String password) async =>
-      _authenticationProvider.createUserWithEmailAndPassword(email, password);
+          String email, String password) async {
+    return _authenticationProvider.createUserWithEmailAndPassword(email, password);
+  }
 
   Future<String> currentuser() async => _authenticationProvider.currentuser();
 
@@ -31,7 +32,7 @@ class Repository {
 
   /// firestore calls
   Stream<QuerySnapshot> kwizinFeed() => _firestoreProvider.kwizinFeed();
-  Future<String> createUserProfile(String name, String email) =>_firestoreProvider.createUserProfile(name, email);
+  Future<String> createUserProfile(String name, String email, String userID) =>_firestoreProvider.createUserProfile(name, email, userID);
 
   // Future<void> uploadGoal(String email, String title, String goal) =>
   //     _firestoreProvider.uploadGoal(title, email, goal);

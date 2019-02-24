@@ -14,6 +14,7 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
+  TextEditingController _firstNameController;
   TextEditingController _emailController;
   TextEditingController _passwordController;
   TextEditingController _retypeController;
@@ -23,6 +24,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   @override
   void initState() {
     super.initState();
+    _firstNameController = TextEditingController();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
     _retypeController = TextEditingController();
@@ -32,6 +34,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   @override
   void dispose() {
+    _firstNameController?.dispose();
     _registrationBloc?.dispose();
     _registrationFormBloc?.dispose();
     _emailController?.dispose();
@@ -128,6 +131,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   labelText: "First Name",
                   errorText: snapshot.error,
                 ),
+                controller: _firstNameController,
                 onChanged: _registrationFormBloc.onFirstNameChanged,
                 keyboardType: TextInputType.text,
               );
@@ -207,6 +211,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                                           RegistrationEvent(
                                               event:
                                                   RegistrationEventType.working,
+                                              name: _firstNameController.text,
                                               email: _emailController.text,
                                               password:
                                                   _passwordController.text));

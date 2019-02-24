@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
 import 'package:kwizny/utils/EmailValidator.dart';
+import 'package:kwizny/utils/FirstNameValidator.dart';
 import 'package:kwizny/utils/password_validator.dart';
 import 'package:rxdart/rxdart.dart';
 
-class RegistrationFormBloc extends Object with EmailValidator, PasswordValidator implements BlocBase {
+class RegistrationFormBloc extends Object with EmailValidator, PasswordValidator, NameValidator implements BlocBase {
   //final _repository = Repository();
 
   final BehaviorSubject<String> _firstNameController = BehaviorSubject<String>();
@@ -22,10 +25,10 @@ class RegistrationFormBloc extends Object with EmailValidator, PasswordValidator
   //
   // Validators
   //
+  Stream<String> get firstName => _firstNameController.stream.transform(validateName);
   Stream<String> get email => _emailController.stream.transform(validateEmail);
   Stream<String> get password => _passwordController.stream.transform(validatePassword);
-  Stream<String> get confirmPassword => _passwordConfirmController.stream.transform(validatePassword)
-          .doOnData((String c) {
+  Stream<String> get confirmPassword => _passwordConfirmController.stream.transform(validatePassword).doOnData((String c) {
         // If the password is accepted (after validation of the rules)
         // we need to ensure both password and retyped password match
         if (0 != _passwordController.value.compareTo(c)) {
@@ -35,8 +38,11 @@ class RegistrationFormBloc extends Object with EmailValidator, PasswordValidator
       });
 
   // Registration button
-  Stream<bool> get registerValid => Observable.combineLatest3(
-      email, password, confirmPassword, (e, p, c) => true);
+  // Stream<bool> get registerValid => Observable.combineLatest4(
+  //     email, password, confirmPassword, firstName  (e, p, c, f) => true);
+
+    Stream<bool> get registerValid => Observable.combineLatest4(
+      firstName, email, password, confirmPassword, (f, e, p, c) => true);
 
   @override
   void dispose() {
