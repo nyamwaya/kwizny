@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
 import 'package:kwizny/src/blocs/home/home_bloc.dart';
 import 'package:kwizny/src/models/kwizin_feed_list.dart';
+import 'package:kwizny/src/ui/home/details/kwizin_detail_page.dart';
+import 'package:zoomable_image/zoomable_image.dart';
 
 class KwizinItemWidget extends StatefulWidget {
   final KwizinFeedList kwizinItem;
@@ -59,11 +61,7 @@ class _KwizinItemWidgetState extends State<KwizinItemWidget> {
     return new Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
-        children: <Widget>[
-          newsFeedHeader(),
-          newsFeedImage(),
-          kwizinListFooter()
-        ],
+        children: <Widget>[newsFeedHeader(), openDetails(), kwizinListFooter()],
       ),
     );
   }
@@ -186,6 +184,16 @@ class _KwizinItemWidgetState extends State<KwizinItemWidget> {
     );
   }
 
+  // this method opens the detail page for the given image
+  GestureDetector openDetails() {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => KwizinDetailPage()));       
+    },
+      child: newsFeedImage(),
+    );
+  }
+
 //kwizin image
   Container newsFeedImage() {
     return Container(
@@ -202,12 +210,12 @@ class _KwizinItemWidgetState extends State<KwizinItemWidget> {
           ],
           borderRadius: BorderRadius.circular(4.0),
           image: DecorationImage(
-              image: NetworkImage(
-                "${widget.kwizinItem.pictureURL}",
-              ),
+              image: NetworkImage('${widget.kwizinItem.pictureURL}'),
               fit: BoxFit.cover)),
     );
   }
+
+//"${widget.kwizinItem.pictureURL}"
 
   //kwizin fotter
   Padding kwizinListFooter() {
