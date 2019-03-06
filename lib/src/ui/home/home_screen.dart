@@ -36,6 +36,7 @@ class HomeScreenState extends State<HomeScreen> {
           backgroundColor: Color(0xfffd4241),
           elevation: 0.0,
           title: Text("Kwiziny"),
+          leading: Container(width: 0.0,),
           actions: <Widget>[
             LogOutButton()
             // IconButton(
