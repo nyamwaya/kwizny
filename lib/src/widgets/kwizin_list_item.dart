@@ -188,8 +188,9 @@ class _KwizinItemWidgetState extends State<KwizinItemWidget> {
   GestureDetector openDetails() {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => KwizinDetailPage()));       
-    },
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => KwizinDetailPage()));
+      },
       child: newsFeedImage(),
     );
   }
@@ -227,10 +228,16 @@ class _KwizinItemWidgetState extends State<KwizinItemWidget> {
           Container(
             child: Row(
               children: <Widget>[
-                Icon(
-                  Icons.favorite_border,
-                  color: Color(0xfffc4041),
-                  size: 28,
+                GestureDetector(
+                  onTap: () {
+                    //Add one like
+                   _bloc.userLikedPhoto();
+                  },
+                  child: Icon(
+                    Icons.favorite_border,
+                    color: Color(0xfffc4041),
+                    size: 28,
+                  ),
                 ),
                 Container(
                   width: 8,

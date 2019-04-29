@@ -32,40 +32,61 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: new AppBar(
-          backgroundColor: Color(0xfffd4241),
-          elevation: 0.0,
-          title: Text("Kwiziny"),
-          leading: Container(width: 0.0,),
-          actions: <Widget>[
-            LogOutButton()
-            // IconButton(
-            //   icon: Icon(Icons.exit_to_app),
-            //   color: Colors.white,
-            //   tooltip: 'Logout button',
-            //   onPressed: () {
-                
-            //   },
-            // ),
+
+        body: ListView(
+          children: <Widget>[
+            searchBox(),
+            Container(
+              alignment: Alignment(0.0, 0.0),
+              child: StreamBuilder(
+                stream: _bloc.geFeedListItems(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (!snapshot.hasData) return LinearProgressIndicator();
+                  return _buildList(context, snapshot.data.documents);
+                },
+              ),
+            ),
           ],
         ),
-        body: Container(
-          alignment: Alignment(0.0, 0.0),
-          child: StreamBuilder(
-            stream: _bloc.geFeedListItems(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (!snapshot.hasData) return LinearProgressIndicator();
-              return _buildList(context, snapshot.data.documents);
-            },
-          ),
-        ),
+
+        
       ),
     );
   }
 
+  //Move this search box to be it's own widget
+  Container searchBox() {
+    return Container(
+        child: Column(
+      children: <Widget>[
+        SizedBox(height: 25.0),
+        Padding(
+          padding: EdgeInsets.only(left: 15.0, right: 15.0),
+          child: Material(
+            elevation: 5.0,
+            borderRadius: BorderRadius.circular(20.0),
+            child: TextFormField(
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon:
+                        Icon(Icons.search, color: Colors.red, size: 30.0),
+                    contentPadding: EdgeInsets.only(left: 15.0, top: 15.0),
+                    hintText: 'Search',
+                    hintStyle: TextStyle(
+                      color: Colors.grey,
+                    ))),
+          ),
+        ),
+        SizedBox(height: 5.0),
+      ],
+    ));
+  }
+
   Widget _buildList(BuildContext context, List<DocumentSnapshot> snapshot) {
     return ListView(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.only(top: 20.0),
       children: snapshot.map((data) => _buildListItem(context, data)).toList(),
     );
@@ -77,5 +98,4 @@ class HomeScreenState extends State<HomeScreen> {
       kwizinItem: record,
     );
   }
-
 }

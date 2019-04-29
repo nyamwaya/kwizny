@@ -27,7 +27,16 @@ class HomeBloc implements BlocBase {
     return _repository.kwizinFeed();
   }
 
-  
+  //Like Function for like button
+  Future<String> userLikedPhoto(){
+    var likeCounter;
+
+    likeCounter++;
+
+    return likeCounter;
+  }
+
+  // a way to parse the data in the bloc come back to this
   // Stream<QuerySnapshot> geFeedListItems() {
   //   return _repository.kwizinFeed();
   // }
