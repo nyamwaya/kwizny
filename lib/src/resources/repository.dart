@@ -31,9 +31,17 @@ class Repository {
   Future<void> signOut() async => _authenticationProvider.signOut();
 
   /// firestore calls
-  Stream<QuerySnapshot> kwizinFeed() => _firestoreProvider.kwizinFeed();
+  Future<Stream<QuerySnapshot>> kwizinFeed() async => _firestoreProvider.kwizinFeed();
   Future<String> createUserProfile(String name, String email, String userID) =>_firestoreProvider.createUserProfile(name, email, userID);
 
+
+  Stream<QuerySnapshot> getCities() {
+    return _firestoreProvider.getCities();
+  }
+
+  Stream<QuerySnapshot> getLocations() {
+    return _firestoreProvider.getLocations();
+  }
   // Future<void> uploadGoal(String email, String title, String goal) =>
   //     _firestoreProvider.uploadGoal(title, email, goal);
 
@@ -50,4 +58,8 @@ class Repository {
 
   // Future<void> registerUser(String email, String password) =>
   //     _firestoreProvider.registerUser(email, password);
+
+
+  //TEST
+  
 }

@@ -34,4 +34,17 @@ class FirestoreProvider {
   //     print('dirt error: $e');
   //   });
   // }
+
+  //TEST
+
+    Stream<QuerySnapshot> getLocations() {
+    return Firestore.instance.collection('locations').snapshots();
+  }
+
+   Stream<QuerySnapshot> getCities() {
+    return Firestore.instance
+        .collection('cities')
+        .orderBy('newPrice')
+        .snapshots();
+  }
 }
