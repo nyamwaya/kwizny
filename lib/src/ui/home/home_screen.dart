@@ -40,8 +40,7 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
+    return Stack(
       children: <Widget>[
         ClipPath(
           clipper: CustomShapeClipper(),
@@ -183,7 +182,7 @@ class HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ],
-    ));
+    );
   }
 
   List<PopupMenuItem<int>> _buildPopupMenuItem(context) {
