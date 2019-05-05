@@ -13,7 +13,8 @@ class HomeScreenBottomPart extends StatefulWidget {
 ThemeData appTheme =
     ThemeData(primaryColor: Color(0xFFF3791A), fontFamily: 'Oxygen');
 
-var viewAllStyle = TextStyle(fontSize: 24.0,fontWeight: FontWeight.bold, color: appTheme.primaryColor);
+var viewAllStyle = TextStyle(
+    fontSize: 24.0, fontWeight: FontWeight.bold, color: appTheme.primaryColor);
 
 class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
   var currentPage = images.length - 1.0;
@@ -63,20 +64,22 @@ class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0,top: 20.0,),
-        
+          padding: const EdgeInsets.only(
+            left: 16.0,
+            right: 16.0,
+            top: 20.0,
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Text("Most Popular",
-                  style: TextStyle(
-                    fontSize: 24.0, 
-                    color: Color(0xff000000))),
+                  style: TextStyle(fontSize: 24.0, color: Color(0xff000000))),
               Spacer(),
-              Text("VIEW ALL (7)", style: TextStyle(
-                fontSize: 16,
-                color: Color(0xFFF3791A),
-              ))
+              Text("VIEW ALL (7)",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Color(0xFFF3791A),
+                  ))
             ],
           ),
         ),
@@ -201,42 +204,35 @@ class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
     );
   }
 
-  Widget _buildProgrammCard(String pictureUrl) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      child: Container(
-          height: 212.8,
-          width: 357.86,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black,
-                  blurRadius: 12.0,
-                ),
-              ],
-              color: Colors.blue,
-              image: DecorationImage(
-                  image: new NetworkImage(pictureUrl), fit: BoxFit.cover)),
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              "Best Vegan",
-              style: TextStyle(
-                  fontSize: 32,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-          )),
-    );
-  }
-
-  Widget _whatsGood() {
-    return Container(
-      height: 212.8,
-      width: 357.86,
-    );
-  }
+  // Widget _buildProgrammCard(String pictureUrl) {
+  //   return Padding(
+  //     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+  //     child: Container(
+  //         height: 212.8,
+  //         width: 357.86,
+  //         decoration: BoxDecoration(
+  //             borderRadius: BorderRadius.circular(10),
+  //             boxShadow: [
+  //               BoxShadow(
+  //                 color: Colors.black,
+  //                 blurRadius: 12.0,
+  //               ),
+  //             ],
+  //             color: Colors.blue,
+  //             image: DecorationImage(
+  //                 image: new NetworkImage(pictureUrl), fit: BoxFit.cover)),
+  //         child: Padding(
+  //           padding: EdgeInsets.all(16),
+  //           child: Text(
+  //             "Best Vegan",
+  //             style: TextStyle(
+  //                 fontSize: 32,
+  //                 color: Colors.white,
+  //                 fontWeight: FontWeight.bold),
+  //           ),
+  //         )),
+  //   );
+  // }
 
   Widget _whatsNew(String pictureUrl) {
     return Card(
@@ -252,15 +248,31 @@ class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
             width: 357.86,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.blue,
+                gradient: LinearGradient(
+                  // Where the linear gradient begins and ends
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  // Add one stop for each color. Stops should increase from 0 to 1
+                  stops: [0.1, 0.5, 0.7, 0.9],
+                  colors: [
+                    // Colors are easy thanks to Flutter's Colors class.
+                    Colors.black,
+                    Colors.black,
+                    Colors.black,
+                    Colors.black,
+                  ],
+                ),
                 image: DecorationImage(
-                    image: new NetworkImage(pictureUrl), fit: BoxFit.cover)),
+                    image: new NetworkImage(pictureUrl),
+                    colorFilter: new ColorFilter.mode(
+                        Colors.black.withOpacity(0.7), BlendMode.dstATop),
+                    fit: BoxFit.cover)),
             child: Padding(
               padding: EdgeInsets.all(16),
               child: Text(
                 "Best Vegan",
                 style: TextStyle(
-                    fontSize: 32,
+                    fontSize: 36,
                     color: Colors.white,
                     fontWeight: FontWeight.bold),
               ),
