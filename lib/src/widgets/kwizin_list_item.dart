@@ -61,7 +61,8 @@ class _KwizinItemWidgetState extends State<KwizinItemWidget> {
     return new Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
-        children: <Widget>[newsFeedHeader(), openDetails(), kwizinListFooter()],
+        children: <Widget>[
+          newsFeedHeader(), openDetails(), kwizinListFooter()],
       ),
     );
   }
