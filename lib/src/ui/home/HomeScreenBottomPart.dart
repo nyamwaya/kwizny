@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kwizny/src/ui/Trending.dart';
+import 'package:kwizny/src/ui/home/details/kwizin_detail_page.dart';
 import 'package:kwizny/src/widgets/CardScrollWidget.dart';
 import 'package:kwizny/src/widgets/StarDisplay.dart';
 import 'package:kwizny/utils/data.dart';
@@ -44,7 +46,13 @@ class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
             ],
           ),
         ),
-        Container(
+
+        GestureDetector(
+             onTap: () {
+          print(   Navigator.push(context, new MaterialPageRoute(
+      builder: (BuildContext context) => new TrendingPage())));
+        },
+         child: Container(
           height: 212.8,
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -62,7 +70,7 @@ class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
                   "https://scontent-msp1-1.cdninstagram.com/vp/8f159d41586b72f358f47d48306dc4ab/5D67C2A2/t51.2885-15/e35/58410227_2162795233758137_8474950525615283953_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com")
             ],
           ),
-        ),
+        )),
         Padding(
           padding: const EdgeInsets.only(
             left: 16.0,
@@ -116,123 +124,86 @@ class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
     ));
   }
 
-  Widget _newThisWeek(String pictureUrl, int rating) {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 175,
-            height: 160,
-            child: Card(
-              semanticContainer: true,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              child: Image.network(
-                pictureUrl,
-                fit: BoxFit.cover,
+  Widget _newThisWeek(String pictureUrl, int rating) => new GestureDetector(
+        onTap: () {
+          print(   Navigator.push(context, new MaterialPageRoute(
+      builder: (BuildContext context) => new KwizinDetailPage())));
+        },
+        child: new Container(
+          child: Row(
+            children: <Widget>[
+              Container(
+                width: 175,
+                height: 160,
+                child: Card(
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: Image.network(
+                    pictureUrl,
+                    fit: BoxFit.cover,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  elevation: 5,
+                  margin: EdgeInsets.all(10),
+                ),
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              elevation: 5,
-              margin: EdgeInsets.all(10),
-            ),
+              Flexible(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 20.0),
+                        child: Text(
+                          "Beef Burger and \nSteak",
+                          style:
+                              TextStyle(fontSize: 16, color: Color(0xff000000)),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 15.0),
+                        child: Row(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 4.0),
+                              child: Text('New',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xff00e047))),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 4.0),
+                              child: Text('-',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xff525257))),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 4.0),
+                              child: Text('0.4 mi from you',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Color(0xff525257))),
+                            ),
+                          ],
+                        ),
+                      ),
+                      StarDisplay(
+                        value: rating,
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
           ),
-          Flexible(
-            child: Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 20.0),
-                    child: Text(
-                      "Beef Burger and \nSteak",
-                      style: TextStyle(fontSize: 16, color: Color(0xff000000)),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 15.0),
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 4.0),
-                          child: Text('New',
-                              style: TextStyle(
-                                  fontSize: 16, color: Color(0xff00e047))),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 4.0),
-                          child: Text('-',
-                              style: TextStyle(
-                                  fontSize: 16, color: Color(0xff525257))),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 4.0),
-                          child: Text('0.4 mi from you',
-                              style: TextStyle(
-                                  fontSize: 16, color: Color(0xff525257))),
-                        ),
-                      ],
-                    ),
-                  ),
-                  StarDisplay(
-                    value: rating,
-                  )
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHeading(String title, String subtitle) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      children: <Widget>[
-        Text(title, style: TextStyle(fontSize: 26.0, color: Color(0xff000000))),
-        Spacer(),
-        Text(subtitle, style: viewAllStyle)
-      ],
-    );
-  }
-
-  // Widget _buildProgrammCard(String pictureUrl) {
-  //   return Padding(
-  //     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-  //     child: Container(
-  //         height: 212.8,
-  //         width: 357.86,
-  //         decoration: BoxDecoration(
-  //             borderRadius: BorderRadius.circular(10),
-  //             boxShadow: [
-  //               BoxShadow(
-  //                 color: Colors.black,
-  //                 blurRadius: 12.0,
-  //               ),
-  //             ],
-  //             color: Colors.blue,
-  //             image: DecorationImage(
-  //                 image: new NetworkImage(pictureUrl), fit: BoxFit.cover)),
-  //         child: Padding(
-  //           padding: EdgeInsets.all(16),
-  //           child: Text(
-  //             "Best Vegan",
-  //             style: TextStyle(
-  //                 fontSize: 32,
-  //                 color: Colors.white,
-  //                 fontWeight: FontWeight.bold),
-  //           ),
-  //         )),
-  //   );
-  // }
+        ));
 
   Widget _whatsNew(String pictureUrl) {
     return Card(
