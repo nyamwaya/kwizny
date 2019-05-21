@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating/flutter_rating.dart' as prefix0;
-import 'package:kwizny/src/ui/Trending.dart';
+import 'package:kwizny/src/widgets/Trending.dart';
 import 'package:kwizny/src/ui/home/details/kwizin_detail_page.dart';
 import 'package:kwizny/src/widgets/CardScrollWidget.dart';
 import 'package:kwizny/src/widgets/StarRating.dart';

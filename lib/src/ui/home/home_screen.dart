@@ -4,6 +4,8 @@ import 'package:kwizny/src/bloc_helpers/bloc_base.dart';
 import 'package:kwizny/src/blocs/home/home_bloc.dart';
 import 'package:kwizny/src/models/CustomShapeClipper.dart';
 import 'package:kwizny/src/models/kwizin_feed_list.dart';
+import 'package:kwizny/src/ui/home/details/kwizin_detail_page.dart';
+import 'package:kwizny/src/ui/profile/profile_page.dart';
 import 'package:kwizny/src/widgets/kwizin_list_item.dart';
 import 'package:kwizny/utils/MyChoiceChip.dart';
 
@@ -81,7 +83,14 @@ class HomeScreenState extends State<HomeScreen> {
                             _buildPopupMenuItem(context),
                       ),
                       Spacer(),
-                      Icon(Icons.settings, color: Colors.white)
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfilePage()));
+                          },
+                          child: Icon(Icons.settings, color: Colors.white))
                     ],
                   ),
                 ),
