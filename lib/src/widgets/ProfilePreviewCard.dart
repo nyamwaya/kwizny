@@ -10,9 +10,8 @@ class ProfilePreviewCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.all(4),
-       
-        elevation: 8,
+        margin: EdgeInsets.all(12),
+        elevation: 6,
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.baseline,
           children: <Widget>[

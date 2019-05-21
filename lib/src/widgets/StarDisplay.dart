@@ -37,8 +37,8 @@ class StarDisplay extends StarDisplayWidget {
 class StarRating extends StatelessWidget {
   final void Function(int index) onChanged;
   final int value;
-  final IconData filledStar;
-  final IconData unfilledStar;
+  final Widget filledStar;
+  final Widget unfilledStar;
 
   const StarRating({
     Key key,
@@ -52,9 +52,10 @@ class StarRating extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).accentColor;
-    final size = 36.0;
+    final size =30.0;
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: List.generate(5, (index) {
         return IconButton(
           onPressed: onChanged != null
@@ -67,7 +68,7 @@ class StarRating extends StatelessWidget {
           icon: Icon(
             index < value ? filledStar ?? Icons.star : unfilledStar ?? Icons.star_border,
           ),
-          padding: EdgeInsets.zero,
+         // padding: EdgeInsets.zero,
           tooltip: "${index + 1} of 5",
         );
       }),

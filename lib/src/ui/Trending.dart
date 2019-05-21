@@ -17,7 +17,7 @@ class TrendingState extends State<TrendingPage> {
       scrollDirection: Axis.vertical,
       children: <Widget>[
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 0),
           child: Row(
             children: <Widget>[
               Container(
@@ -31,19 +31,19 @@ class TrendingState extends State<TrendingPage> {
           ),
         ),
         Padding(
-            padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+            padding: EdgeInsets.only(left: 16, right: 16, top: 10),
             child: Text(
               "Best Vegan",
               style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
             )),
         Padding(
-            padding: EdgeInsets.only(left: 30, right: 30, top: 6),
+            padding: EdgeInsets.only(left: 16, right: 16, top: 6),
             child: Text(
               "15 result to food name",
               style: TextStyle(fontSize: 20),
             )),
         Padding(
-          padding: EdgeInsets.only(left: 30, right: 30, top: 30),
+          padding: EdgeInsets.only(left: 0, right: 0, top: 20),
           child: GridView.builder(
             shrinkWrap: true,
             physics: ClampingScrollPhysics(),
