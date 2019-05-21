@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating/flutter_rating.dart' as prefix0;
 import 'package:kwizny/src/ui/Trending.dart';
 import 'package:kwizny/src/ui/home/details/kwizin_detail_page.dart';
 import 'package:kwizny/src/widgets/CardScrollWidget.dart';
-import 'package:kwizny/src/widgets/StarDisplay.dart';
+import 'package:kwizny/src/widgets/StarRating.dart';
 import 'package:kwizny/utils/data.dart';
 
 class HomeScreenBottomPart extends StatefulWidget {
@@ -46,31 +47,32 @@ class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
             ],
           ),
         ),
-
         GestureDetector(
-             onTap: () {
-          print(   Navigator.push(context, new MaterialPageRoute(
-      builder: (BuildContext context) => new TrendingPage())));
-        },
-         child: Container(
-          height: 212.8,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            shrinkWrap: true,
-            children: <Widget>[
-              _whatsNew(
-                  "https://scontent-msp1-1.cdninstagram.com/vp/956d655adc36a81c061b0d71a2bd5106/5D782F63/t51.2885-15/sh0.08/e35/p640x640/50088376_2159236274337219_6373459363179563352_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com"),
-              _whatsNew(
-                  "https://scontent-msp1-1.cdninstagram.com/vp/48a27bf45c61d6ec67a38c3ea2b57aa5/5D53B760/t51.2885-15/e35/57574644_418010862329876_1409660303091630638_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com"),
-              _whatsNew(
-                  "https://scontent-msp1-1.cdninstagram.com/vp/04be3de8ca0f83a5c99e1eb26cfa7ce8/5D6567AC/t51.2885-15/e35/58410255_608873336249140_2169482679759699819_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com"),
-              _whatsNew(
-                  "https://scontent-msp1-1.cdninstagram.com/vp/fae6f30bc16f53784e411d2d706070a5/5D587F45/t51.2885-15/e35/56823608_336842583699623_8387771107355463660_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com"),
-              _whatsNew(
-                  "https://scontent-msp1-1.cdninstagram.com/vp/8f159d41586b72f358f47d48306dc4ab/5D67C2A2/t51.2885-15/e35/58410227_2162795233758137_8474950525615283953_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com")
-            ],
-          ),
-        )),
+            onTap: () {
+              print(Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (BuildContext context) => new TrendingPage())));
+            },
+            child: Container(
+              height: 212.8,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                children: <Widget>[
+                  _whatsNew(
+                      "https://scontent-msp1-1.cdninstagram.com/vp/956d655adc36a81c061b0d71a2bd5106/5D782F63/t51.2885-15/sh0.08/e35/p640x640/50088376_2159236274337219_6373459363179563352_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com"),
+                  _whatsNew(
+                      "https://scontent-msp1-1.cdninstagram.com/vp/48a27bf45c61d6ec67a38c3ea2b57aa5/5D53B760/t51.2885-15/e35/57574644_418010862329876_1409660303091630638_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com"),
+                  _whatsNew(
+                      "https://scontent-msp1-1.cdninstagram.com/vp/04be3de8ca0f83a5c99e1eb26cfa7ce8/5D6567AC/t51.2885-15/e35/58410255_608873336249140_2169482679759699819_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com"),
+                  _whatsNew(
+                      "https://scontent-msp1-1.cdninstagram.com/vp/fae6f30bc16f53784e411d2d706070a5/5D587F45/t51.2885-15/e35/56823608_336842583699623_8387771107355463660_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com"),
+                  _whatsNew(
+                      "https://scontent-msp1-1.cdninstagram.com/vp/8f159d41586b72f358f47d48306dc4ab/5D67C2A2/t51.2885-15/e35/58410227_2162795233758137_8474950525615283953_n.jpg?_nc_ht=scontent-msp1-1.cdninstagram.com")
+                ],
+              ),
+            )),
         Padding(
           padding: const EdgeInsets.only(
             left: 16.0,
@@ -125,85 +127,99 @@ class HomeScreenBottomPartState extends State<HomeScreenBottomPart> {
   }
 
   Widget _newThisWeek(String pictureUrl, int rating) => new GestureDetector(
-        onTap: () {
-          print(   Navigator.push(context, new MaterialPageRoute(
-      builder: (BuildContext context) => new KwizinDetailPage())));
-        },
-        child: new Container(
-          child: Row(
-            children: <Widget>[
-              Container(
-                width: 175,
-                height: 160,
-                child: Card(
-                  semanticContainer: true,
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: Image.network(
-                    pictureUrl,
-                    fit: BoxFit.cover,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  elevation: 5,
-                  margin: EdgeInsets.all(10),
+      onTap: () {
+        print(Navigator.push(
+            context,
+            new MaterialPageRoute(
+                builder: (BuildContext context) => new KwizinDetailPage())));
+      },
+      child: new Container(
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 175,
+              height: 160,
+              child: Card(
+                semanticContainer: true,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Image.network(
+                  pictureUrl,
+                  fit: BoxFit.cover,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 5,
+                margin: EdgeInsets.all(10),
+              ),
+            ),
+            Flexible(
+              child: Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 20.0),
+                      child: Text(
+                        "Beef Burger and \nSteak",
+                        style:
+                            TextStyle(fontSize: 16, color: Color(0xff000000)),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 15.0),
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4.0),
+                            child: Text('New',
+                                style: TextStyle(
+                                    fontSize: 16, color: Color(0xff00e047))),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4.0),
+                            child: Text('-',
+                                style: TextStyle(
+                                    fontSize: 16, color: Color(0xff525257))),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 4.0),
+                            child: Text('0.4 mi from you',
+                                style: TextStyle(
+                                    fontSize: 16, color: Color(0xff525257))),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Row(
+                      children: <Widget>[
+                        prefix0.StarRating(
+                          color: Colors.red,
+                          rating: 1,
+                          starCount: 5,
+                          size: 24,
+                        ),
+                      ],
+                    )
+
+                    // StarDisplay(
+                    //   value: rating,
+                    // )
+                  ],
                 ),
               ),
-              Flexible(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 20.0),
-                        child: Text(
-                          "Beef Burger and \nSteak",
-                          style:
-                              TextStyle(fontSize: 16, color: Color(0xff000000)),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 15.0),
-                        child: Row(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 4.0),
-                              child: Text('New',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Color(0xff00e047))),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 4.0),
-                              child: Text('-',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Color(0xff525257))),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 4.0),
-                              child: Text('0.4 mi from you',
-                                  style: TextStyle(
-                                      fontSize: 16, color: Color(0xff525257))),
-                            ),
-                          ],
-                        ),
-                      ),
-                      StarDisplay(
-                        value: rating,
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ));
+            )
+          ],
+        ),
+      ));
 
   Widget _whatsNew(String pictureUrl) {
     return Card(

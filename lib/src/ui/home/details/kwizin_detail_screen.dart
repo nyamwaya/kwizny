@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kwizny/src/widgets/StarDisplay.dart';
 import 'package:flutter_rating/flutter_rating.dart';
-import 'package:kwizny/src/widgets/StarDisplay.dart' as prefix0;
+import 'package:kwizny/utils/MyChoiceChip.dart';
 
 class KwizinDetailScreen extends StatefulWidget {
   @override
@@ -21,7 +20,7 @@ class KwizinDetailScreenState extends State<KwizinDetailScreen> {
           children: <Widget>[
             hero(),
             _heading(),
-            rating(),
+            //rating(),
             reviews(),
           ],
         ),
@@ -31,32 +30,31 @@ class KwizinDetailScreenState extends State<KwizinDetailScreen> {
 
   Widget rating() {
     return Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-        child: new Column(children: <Widget>[
-          new Column(children: <Widget>[
-            
-            new prefix0.StarRating(
-              onChanged: (int index) {},
-              value: 3,
-            ),
-        
-            // new Padding(
-              
-            //   // child: new StarRating(
-            //   //   size: 25.0,
-            //   //   rating: rating,
-            //   //   color: Colors.orange,
-            //   //   borderColor: Colors.grey,
-            //   //   starCount: starCount,
-            //   //   onRatingChanged: (rating) => setState(
-            //   //         () {
-            //   //           this.rating = rating;
-            //   //         },
-            //   //       ),
-            //   // ),
-            // )
-          ])
-        ]));
+        padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
+        child: new Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              new Text(
+                "80 ratings",
+                style: const TextStyle(
+                  letterSpacing: 1.0,
+                  color: Colors.black,
+                  fontSize: 16.0,
+                  //fontFamily: 'Quicksand'
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                  StarRating(
+                    color: Colors.red,
+                    rating: 1,
+                    starCount: 5,
+                    size: 24,
+                  ),
+                ],
+              )
+            ]));
   }
 
   Stack hero() {
@@ -162,7 +160,7 @@ class KwizinDetailScreenState extends State<KwizinDetailScreen> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(top: 4),
+              padding: EdgeInsets.only(top: 8),
               child: Row(
                 children: <Widget>[
                   new Icon(
@@ -171,7 +169,9 @@ class KwizinDetailScreenState extends State<KwizinDetailScreen> {
                     size: 20.0,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 4),
+                    padding: EdgeInsets.only(
+                      left: 4,
+                    ),
                     child: new Text(
                       "Uptown, Minneapolis",
                       style: const TextStyle(
@@ -213,12 +213,12 @@ class KwizinDetailScreenState extends State<KwizinDetailScreen> {
 
   Widget reviews() {
     return Container(
-      padding: EdgeInsets.only(top: 0.0, left: 16.0, right: 16.0),
+      padding: EdgeInsets.only(top: 0.0, left: 12.0, right: 4.0),
       margin: EdgeInsets.only(
         right: 20.0,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,24 +226,39 @@ class KwizinDetailScreenState extends State<KwizinDetailScreen> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              // later feature don't delete user profile
-              // userComentBlock(),
-              //   StarDisplay(
-              //     value: 5,
-
-              //  )
-            ],
+            children: <Widget>[],
           ),
           Container(
-            margin: EdgeInsets.only(top: 12),
+            margin: EdgeInsets.only(top: 12, left: 12,),
             child: Text(
               "foodieapolis Cheesy perfection! 📷 @scottmeinzer 🍔 @eastsidempls #burger #cheeseburger #dailyfoodfeed #minnesota #mpls #vscofood #feedfeed #f52grams #eeeeeats #eater #foodporn #foodie #foodieapolis #huffposttaste #buzzfeedfood #twincities #experiencelocal #twincities #supportlocal #eatfamous #eatertwincities #zagat #foodbeast #buzzfeast #foodgawker #foodilysm #tryitordiet #devourpower",
               style: TextStyle(
-                  fontSize: 14.0,
+                  fontSize: 16.0,
                   fontFamily: 'sofiapro',
                   color: Colors.black54),
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 20),
+            child: new ConstrainedBox(
+                constraints: const BoxConstraints(minWidth: 200),
+                child: RaisedButton(
+                  child: const Text(
+                    'Save for later',
+                  ),
+                  textColor: Colors.white,
+                  color: Color(0xfffc4041),
+                  elevation: 4.0,
+                  splashColor: Color(0xff192865),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0)),
+                  onPressed: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => CommentAndRateScreen()),
+                    // );
+                  },
+                )),
           )
         ],
       ),
